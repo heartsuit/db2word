@@ -1,1 +1,8 @@
-
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/jetlinks
+    username: postgres
+    password: root
+    hikari:
+      maximum-pool-size: 16
