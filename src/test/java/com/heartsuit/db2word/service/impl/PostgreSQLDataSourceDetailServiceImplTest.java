@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Date:  2021/6/8 16:22
  */
 @SpringBootTest
-class PostgreSQLMySQLDataSourceDetailServiceImplTest {
+class PostgreSQLDataSourceDetailServiceImplTest {
 
     @Autowired
     private PostgreSQLDataSourceDetailService postgreSQLDataSourceDetailService;
