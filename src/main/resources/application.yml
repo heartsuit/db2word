@@ -1,1 +1,19 @@
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+  mapper-locations: classpath*:mapper/*.xml
 
+spring:
+  datasource:
+    mysql:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/zaservice?useUnicode=true&characterEncoding=utf8&useSSL=false
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: root
+
+    pg:
+      jdbc-url: jdbc:postgresql://127.0.0.1:5432/jetlinks
+      driver-class-name: org.postgresql.Driver
+      username: postgres
+      password: root
