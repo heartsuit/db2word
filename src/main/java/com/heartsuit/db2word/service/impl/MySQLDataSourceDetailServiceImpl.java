@@ -8,6 +8,7 @@ import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.rtf.RtfWriter2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
@@ -24,6 +25,9 @@ import java.util.Map;
  **/
 @Service
 public class MySQLDataSourceDetailServiceImpl implements MySQLDataSourceDetailService {
+
+    @Value("${doc.path}")
+    private String path;
 
     @Autowired
     private MySQLDataSourceMapper dataSourceMapper;
@@ -46,7 +50,7 @@ public class MySQLDataSourceDetailServiceImpl implements MySQLDataSourceDetailSe
         // 创建word文档,并设置纸张的大小
         Document document = new Document(PageSize.A4);
         // 创建word文档
-        RtfWriter2.getInstance(document, new FileOutputStream("D:/data/dbDetail.doc"));
+        RtfWriter2.getInstance(document, new FileOutputStream(path));
         document.open();// 设置文档标题
         Paragraph ph = new Paragraph();
         Font f = new Font();

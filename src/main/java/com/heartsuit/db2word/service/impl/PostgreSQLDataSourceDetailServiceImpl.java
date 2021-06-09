@@ -7,6 +7,7 @@ import com.heartsuit.db2word.service.PostgreSQLDataSourceDetailService;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.rtf.RtfWriter2;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
@@ -21,6 +22,9 @@ import java.util.Map;
  */
 @Service
 public class PostgreSQLDataSourceDetailServiceImpl implements PostgreSQLDataSourceDetailService {
+
+    @Value("${doc.path}")
+    private String path;
 
     private final PostgreSQLDataSourceMapper postgreSQLDataSourceMapper;
 
@@ -46,7 +50,7 @@ public class PostgreSQLDataSourceDetailServiceImpl implements PostgreSQLDataSour
         // 创建word文档,并设置纸张的大小
         Document document = new Document(PageSize.A4);
         // 创建word文档
-        RtfWriter2.getInstance(document, new FileOutputStream("D:/data/dbDetail.doc"));
+        RtfWriter2.getInstance(document, new FileOutputStream(path));
         document.open();// 设置文档标题
         Paragraph p = new Paragraph("数据库表设计文档", new Font(Font.NORMAL, 24, Font.BOLD, new Color(0, 0, 0)));
         p.setAlignment(1);
