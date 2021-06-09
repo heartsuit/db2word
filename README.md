@@ -22,6 +22,14 @@ Note：
    
 ![2021-06-09-ExportPostgreSQL.png](https://github.com/heartsuit/heartsuit.github.io/raw/master/pictures/2021-06-09-ExportPostgreSQL.png)
 
+### 运行
+
+直接到测试类中执行toWord()方法即可。
+
+- com.heartsuit.db2word.service.impl.MySQLDataSourceDetailServiceImplTest
+
+- com.heartsuit.db2word.service.impl.PostgreSQLDataSourceDetailServiceImplTest
+
 ---
 
 ***If you have any questions or any bugs are found, please feel free to contact me.***
