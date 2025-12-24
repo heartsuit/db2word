@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -25,12 +26,12 @@ public class Db2WordController {
     private Db2WordService db2WordService;
 
     @GetMapping("/download")
-    public ResponseEntity<InputStreamResource> downloadDatabaseDoc() throws DocumentException, FileNotFoundException {
+    public ResponseEntity<InputStreamResource> downloadDatabaseDoc() throws DocumentException, FileNotFoundException, UnsupportedEncodingException {
         List<Map<String, Object>> tables = db2WordService.getAllTableNames();
         ByteArrayInputStream bis = db2WordService.toWord(tables);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment; filename=数据库表设计文档.doc");
+        headers.add("Content-Disposition", "attachment; filename=" + java.net.URLEncoder.encode("数据库设计文档", "UTF-8") + ".doc");
 
         return ResponseEntity
                 .ok()
