@@ -14,13 +14,13 @@ import java.util.Map;
  */
 @Mapper
 @Repository
-public interface DataSourceMapper {
+public interface Db2WordMapper {
     /**
      * 根据数据库名称获取数据库中表的名称和注释
      *
      * @return
      */
-    @Select("select relname as table_name,(select description from pg_description where objoid=oid and objsubid=0) as table_comment from pg_class where relkind ='r' and relname NOT LIKE 'pg%' AND relname NOT LIKE 'sql_%' order by table_name;")
+    @Select("SELECT c.relname as table_name,(SELECT description from pg_description where objoid=c.oid and objsubid=0) as table_comment from pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace where relkind ='r' AND n.nspname = 'public' AND relname NOT LIKE 'pg%' AND relname NOT LIKE 'sql_%' order by TABLE_NAME;")
     List<Map<String, Object>> getAllTableNames();
 
     /**
@@ -40,6 +40,6 @@ public interface DataSourceMapper {
             "(case when a.attnotnull=true then 'NO' else 'YES' end) as null,\n" +
             "col_description(a.attrelid,a.attnum) as comment\n" +
             "from pg_attribute a\n" +
-            "where attstattarget=-1 and attrelid = (select oid from pg_class where relname = '${tableName}');")
+            "where attstattarget=-1 and attrelid = (select c.oid from pg_class c JOIN pg_namespace n ON c.relnamespace = n.oid WHERE c.relname = '${tableName}' AND n.nspname = 'public');")
     List<Map<String, Object>> getTableColumnDetail(@Param("tableName") String tableName);
 }

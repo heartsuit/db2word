@@ -2,6 +2,7 @@ package com.heartsuit.db2word.postgresql.service;
 
 import com.lowagie.text.DocumentException;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.Map;
  * Author:  Heartsuit
  * Date:  2021/6/8 8:32
  */
-public interface DataSourceDetailService {
+public interface Db2WordService {
     /**
      * 获取数据库中表的名称和注释
      * @return
@@ -30,5 +31,5 @@ public interface DataSourceDetailService {
      * @throws FileNotFoundException
      * @throws DocumentException
      */
-    void toWord(List<Map<String, Object>> tables) throws FileNotFoundException, DocumentException;
+    ByteArrayInputStream toWord(List<Map<String, Object>> tables) throws FileNotFoundException, DocumentException;
 }
